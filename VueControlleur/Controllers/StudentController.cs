@@ -39,6 +39,24 @@ namespace VueControlleur.Controllers
                     Nom = "Couto De Oliveira",
                     Langage = "PHP"
                 },
+                new StudentModel
+                {
+                    Prenom = "Sylvio",
+                    Nom = "Henriques",
+                    Langage = "C#"
+                },
+                new StudentModel
+                {
+                    Prenom = "Thomas",
+                    Nom = "Carlus",
+                    Langage = "Inconnu"
+                },
+                new StudentModel
+                {
+                    Prenom = "Armélio",
+                    Nom = "Do Campos",
+                    Langage = "Inconnu"
+                },
             });
         }
     }
