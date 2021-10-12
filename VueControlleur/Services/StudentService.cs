@@ -10,13 +10,33 @@ namespace VueControlleur.Services
 {
     public class StudentService
     {
-        public IEnumerable<StudentModel> Students;
+        public List<StudentModel> Students;
 
         public StudentService()
         {
             string text = File.ReadAllText("students.json");
 
-            Students = JsonConvert.DeserializeObject<IEnumerable<StudentModel>>(text);
+            Students = JsonConvert.DeserializeObject<List<StudentModel>>(text);
+        }
+
+        public void AddStudent(StudentModel student)
+        {
+            Students.Add(student);
+
+            string text = JsonConvert.SerializeObject(Students);
+
+            File.WriteAllText("students.json", text);
+
+        }
+        public void Delete()
+        {
+           
+
+            string text = JsonConvert.SerializeObject(Students);
+
+            File.WriteAllText("students.json", text);
+
         }
     }
+}
 }
