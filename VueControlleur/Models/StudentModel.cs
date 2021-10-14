@@ -7,6 +7,7 @@ namespace VueControlleur.Models
 {
     public class StudentModel
     {
+        public Guid Id;
         public string Prenom;
         public string Nom;
         public string Langage;

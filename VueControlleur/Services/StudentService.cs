@@ -28,15 +28,22 @@ namespace VueControlleur.Services
             File.WriteAllText("students.json", text);
 
         }
-        public void Delete()
+        public void Delete(Guid id)
         {
-           
+            Students.Remove(Students.First(i => i.Id == id));
 
             string text = JsonConvert.SerializeObject(Students);
 
             File.WriteAllText("students.json", text);
+        }
 
+        public void EditStudent(string nom, string prenom, string langage)
+        {
+            StudentModel student = Students.FirstOrDefault(i => i.Prenom == prenom && i.Nom == nom);
+            Delete(student.Id);
+            student.Langage = langage;
+            AddStudent(student);
         }
     }
 }
-}
+

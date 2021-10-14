@@ -23,6 +23,7 @@ namespace VueControlleur.Controllers
             StudentService = service;
         }
 
+        [Route("/")]
         public IActionResult Index()
         {
             return View("StudentView", StudentService.Students);
@@ -33,6 +34,7 @@ namespace VueControlleur.Controllers
         {
             var student = new StudentModel
             {
+                Id = Guid.NewGuid(),
                 Nom = nom,
                 Prenom = prenom,
                 Langage = langage
@@ -43,17 +45,20 @@ namespace VueControlleur.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete()
+        [HttpGet("delete/{id}")]
+        public IActionResult Delete(Guid id)
         {
+            StudentService.Delete(id);
 
-
-            return View();
+            return RedirectToAction("Index");
         }
 
-        [Route("edit/{nom}/{prenom}/{langage}")]
-        public IActionResult Edit()
+        [HttpGet("edit/{nom}/{prenom}/{langage}")]
+        public IActionResult Edit(string nom, string prenom, string langage)
         {
-            return View("EditView", StudentService.Students);
+            StudentService.EditStudent(nom, prenom, langage);
+
+            return RedirectToAction("Index");
         }
     }
 }
